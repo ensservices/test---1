@@ -8,7 +8,7 @@ const MoviesRows = (props)=>{
     const [movies, setMovies] = useState(null);
     const fetchMovie = async ()=>{
         const movie = await fetchMoviesData(`${fetBaseUrl}`);
-        console.log(movie.results);
+        //console.log(movie.results);
         setMovies(movie.results);
     }
     useEffect(()=>{
@@ -17,9 +17,9 @@ const MoviesRows = (props)=>{
     const MovieHandler = (vaa)=>{
         // alert(vaa)
          const filteredMovie = movies.filter(element=> element.id === vaa );
-         console.log(filteredMovie);
+         //console.log(filteredMovie);
          setHeaderData(filteredMovie[0])
-
+         localStorage.setItem("netflixCurrent", JSON.stringify(filteredMovie[0]));
     }
     return (
         <div className="row">
@@ -31,7 +31,7 @@ const MoviesRows = (props)=>{
                        movies ? movies.map((movie, index) => {
                             return (
                                 <div className="moview_view" key={movie.id} onClick={()=> MovieHandler(movie.id) } >
-                                    <img src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`} className="feature_image" alt="image" />
+                                    <img src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`} className="feature_image" alt="imagae" />
                                 </div> 
                             )
                         }) : "Loading"
